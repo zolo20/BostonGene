@@ -23,10 +23,11 @@ public class SynchronyzedTreeMap {
         String value;
         synchronized (monitor) {
             while (!state && numbers.size() == 0) monitor.wait();
-            state = false;
+            state = true;
             value = numbers.remove(numbers.entrySet().stream().findFirst().get().getKey());
             monitor.notifyAll();
         }
+        state = false;
         return value;
     }
 
