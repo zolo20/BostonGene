@@ -14,7 +14,6 @@ public class Main {
 
         executorService.scheduleAtFixedRate(() -> {
             try {
-                System.out.println(map.toString());
                 System.out.println("Enter number:");
                 map.put(new Scanner(System.in).nextLine().trim());
             } catch (InterruptedException e) {
