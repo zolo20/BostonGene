@@ -10,11 +10,11 @@ public class Main {
         SynchronyzedTreeMap map = new SynchronyzedTreeMap();
         map.put("one thousand ninety nine");
         map.put("nine thousand nine hundred ninety nine");
-        ScheduledExecutorService executorService1 = Executors.newSingleThreadScheduledExecutor();
-        ScheduledExecutorService executorService2 = Executors.newSingleThreadScheduledExecutor();
+        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(2);
 
-        executorService1.scheduleAtFixedRate(() -> {
+        executorService.scheduleAtFixedRate(() -> {
             try {
+                System.out.println(map.toString());
                 System.out.println("Enter number:");
                 map.put(new Scanner(System.in).nextLine().trim());
             } catch (InterruptedException e) {
@@ -24,9 +24,10 @@ public class Main {
             }
         }, 0, 1, TimeUnit.MILLISECONDS);
 
-        executorService2.scheduleAtFixedRate(() -> {
+        executorService.scheduleAtFixedRate(() -> {
             try {
-                System.out.println(map.takeMin());
+                System.out.println("Deleted value " + map.takeMin());
+                System.out.println(map.toString());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
