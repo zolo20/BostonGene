@@ -2,8 +2,6 @@ package mutithreading;
 
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 public class SynchronyzedTreeMap {
     private final Object monitor = new Object();
@@ -13,7 +11,7 @@ public class SynchronyzedTreeMap {
     public String put(String value) throws InterruptedException {
         synchronized (monitor) {
             while (state) monitor.wait();
-            numbers.put(Converter.converterFromStringsToNumbers(value), value);
+            numbers.put(Converter.converterFromStringToNumber(value), value);
             monitor.notifyAll();
         }
         return value;
