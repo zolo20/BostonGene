@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         SynchronyzedTreeMap map = new SynchronyzedTreeMap();
         map.put("one thousand ninety nine");
-        map.put("nine thousand nine hundred ninety nine");
+        map.put("nine thousand nine hundred ninety five");
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(2);
 
         executorService.scheduleAtFixedRate(() -> {
