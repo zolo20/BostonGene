@@ -2,25 +2,25 @@ package mutithreading;
 
 public class Converter {
 
-    public static final String[] units = { "", "one", "two", "three", "four",
-            "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve",
-            "thirteen", "fourteen", "fifteen", "sixteen", "seventeen",
-            "eighteen", "nineteen" };
-
-    public static final String[] tens = {
-            "", 		// 0
-            "",		    // 1
-            "twenty", 	// 2
-            "thirty", 	// 3
-            "forty", 	// 4
-            "fifty", 	// 5
-            "sixty", 	// 6
-            "seventy",	// 7
-            "eighty", 	// 8
-            "ninety" 	// 9
-    };
-
     public static String converterFromNumberToString(final int n) {
+        String[] units = {"", "one", "two", "three", "four",
+                "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve",
+                "thirteen", "fourteen", "fifteen", "sixteen", "seventeen",
+                "eighteen", "nineteen"};
+
+        String[] tens = {
+                "",        // 0
+                "",            // 1
+                "twenty",    // 2
+                "thirty",    // 3
+                "forty",    // 4
+                "fifty",    // 5
+                "sixty",    // 6
+                "seventy",    // 7
+                "eighty",    // 8
+                "ninety"    // 9
+        };
+
         if (n < 20) {
             return units[n];
         }
