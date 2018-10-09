@@ -6,6 +6,7 @@ public class Converter {
         if (number == null || number.length() < 1) {
             throw new NumberFormatException();
         }
+
         int finalResult = 0;
         int result = 0;
         String[] num = number.split(" ");

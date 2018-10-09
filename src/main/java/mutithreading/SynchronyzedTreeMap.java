@@ -33,6 +33,6 @@ public class SynchronyzedTreeMap {
 
     @Override
     public String toString() {
-        return numbers.entrySet().toString();
+        return numbers.toString();
     }
 }
