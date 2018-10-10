@@ -6,11 +6,7 @@ import org.springframework.stereotype.Service;
 import userservice.entity.UserEntity;
 import userservice.form.UserForm;
 import userservice.repository.UserRepository;
-
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+import userservice.utils.Converter;
 
 @Service
 public class UserService {
@@ -26,7 +22,7 @@ public class UserService {
 
     public UserEntity saveUser(UserForm userForm) {
         if (userRepository.getUserEntityByEmail(userForm.getEmail()) == null) {
-            long checkDate = convertDateToMills(userForm.getBirthday());
+            long checkDate = Converter.convertDateToMills(userForm.getBirthday());
             if (checkDate == -1) {
                 return null;
             }
@@ -58,17 +54,4 @@ public class UserService {
         return userEntity;
     }
 
-    private long convertDateToMills(String date) {
-        try {
-            date += "T00:00:00.000Z";
-            LocalDateTime localDateTime = LocalDateTime.parse(date,
-                    DateTimeFormatter.ofPattern("dd.MM.yyyy'T'HH:mm:ss.SSS'Z'"));
-
-            return localDateTime
-                    .atZone(ZoneId.systemDefault())
-                    .toInstant().toEpochMilli();
-        } catch (DateTimeParseException e) {
-            return -1;
-        }
-    }
 }

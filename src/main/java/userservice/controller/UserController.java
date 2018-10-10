@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.*;
 import userservice.entity.UserEntity;
 import userservice.form.UserForm;
 import userservice.service.UserService;
+import userservice.utils.Converter;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.Calendar;
 
 @RestController
 public class UserController {
@@ -44,7 +44,7 @@ public class UserController {
         userForm.setName(userEntity.getName());
         userForm.setPassword(userEntity.getPassword());
         userForm.setSurname(userEntity.getSurname());
-        userForm.setBirthday(convert(userEntity.getBirthday()));
+        userForm.setBirthday(Converter.convertMillsToString(userEntity.getBirthday()));
         return userForm;
     }
 
@@ -57,13 +57,4 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    private String convert(long birthday) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(birthday);
-
-        int mYear = calendar.get(Calendar.YEAR);
-        String mMonth = calendar.get(Calendar.MONTH) + 1 < 10 ? "0" + (calendar.get(Calendar.MONTH) + 1) : (calendar.get(Calendar.MONTH) + 1) + "";
-        String mDay = calendar.get(Calendar.DAY_OF_MONTH) < 10 ? "0" + calendar.get(Calendar.DAY_OF_MONTH) : calendar.get(Calendar.DAY_OF_MONTH) + "";
-        return mDay + "." + mMonth + "." + mYear;
-    }
 }
