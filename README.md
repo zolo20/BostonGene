@@ -51,6 +51,7 @@ _Часть 2. Spring user service_
             "surname": "Kalashov",
             "birthday": "01.09.1995"
         }
+        
 _Часть 3. Yandex translate API_
 
     1) Скачать репозиторий и открыть папку любым IDE.
